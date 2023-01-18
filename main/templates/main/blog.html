@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load main_filter %}
 {% block content %}
 <div class="container my-3">
     <table class="table">
@@ -7,18 +8,25 @@
                 <th>번호</th>
                 <th>제목</th>
                 <th>작성일시</th>
+                <th>글쓴이</th>
             </tr>
         </thead>
     <tbody>
         {% if postlist %}
         {% for list in postlist %}
         <tr>
-            <td>{{ forloop.counter }}</td>
             <td>
-                <a href="{% url 'posting' list.pk %}">{{ list.postname }}</a>
+                <!--번호 = 전체 건수 - 시작 인덱스 - 현재 인덱스 +1 -->
+                {{ postlist.paginator.count|sub:postlist.start_index|sub:forloop.counter0|add:1 }}
+            </td>
+            <td>
+                <a href="{% url 'main:posting' list.pk %}">{{ list.postname }}</a>
             </td>
             <td>
                 {{ list.create_date }}
+            </td>
+            <td>
+                {{ list.author }}
             </td>
         </tr>
         {% endfor %}
