@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('common/', include('common.urls')),
     path('', include('main.urls'))
+    
 ]
+handler404 = 'common.views.page_not_found'
