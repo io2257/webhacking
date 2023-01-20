@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from main.views import index, blog, posting, new_post, remove_post, post_modify
 # 이미지 업로드
 from django.conf.urls.static import static
