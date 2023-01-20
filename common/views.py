@@ -13,7 +13,7 @@ def signup(request):
             user = authenticate(usename=username, password=raw_password)
             user = form.save()
             login(request, user)
-            return redirect('index')
+            return redirect('main:index')
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form' : form })
