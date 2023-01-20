@@ -11,7 +11,7 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(usename=username, password=raw_password)
-            user.save()
+            user = form.save()
             login(request, user)
             return redirect('index')
     else:
